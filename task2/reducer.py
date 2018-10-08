@@ -25,4 +25,5 @@ for line in sys.stdin:
 # Don't forget about the last value!
 if prev_key is not None:
     result_key, result_value = reduce_function(prev_key, values)
-    print(result_key + " " + str(result_value) + "\t")
+    if result_value> 5:
+        print(result_key + " " + str(result_value) + "\t")
