@@ -7,4 +7,5 @@ import sys
 for line in sys.stdin:
     new_line = line.strip().split("\t")
     for genere in new_line[8].split(","):
-        print(genere)
+        if genere != "\N":
+            print(genere)
