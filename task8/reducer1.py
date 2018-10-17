@@ -10,7 +10,7 @@ for line in sys.stdin:
 
     if key != prev_key and prev_key is not None:
         separator = ","
-        print(prev_key + "\t" + separator.join(values))
+        print(prev_key + "\t" + separator.join(values) + "\t")
         values = []
 
     prev_key = key
@@ -19,4 +19,4 @@ for line in sys.stdin:
 # Don't forget about the last value!
 if prev_key is not None:
     separator = ","
-    print(prev_key + "\t" + separator.join(values))
+    print(prev_key + "\t" + separator.join(values) + "\t")

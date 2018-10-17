@@ -8,7 +8,7 @@ hdfs dfs -rm -r $OUTPUT_DIR_AUX
 
 hadoop jar /opt/hadoop/hadoop-2.9.1/share/hadoop/tools/lib/hadoop-streaming-2.9.1.jar \
   -D mapreduce.job.name=${USER}_task8_fisrtMap \
-  -D mapred.reduce.tasks=9 \
+  -D mapred.reduce.tasks=1 \
   -input /data/small/imdb/title.basics.tsv \
   -output $OUTPUT_DIR_AUX \
   -mapper mapper1.py \
@@ -21,12 +21,14 @@ hadoop jar /opt/hadoop/hadoop-2.9.1/share/hadoop/tools/lib/hadoop-streaming-2.9.
 hadoop jar /opt/hadoop/hadoop-2.9.1/share/hadoop/tools/lib/hadoop-streaming-2.9.1.jar \
   -D mapreduce.job.name=${USER}_task8_secondMap \
   -D mapred.reduce.tasks=9 \
-  -input $OUTPUT_DIR_AUX \
   -input /data/small/imdb/title.ratings.tsv \
+  -input $OUTPUT_DIR_AUX \
   -output $OUTPUT_DIR \
   -mapper mapper2.py \
+  -combiner combiner2.py \
   -reducer reducer2.py \
   -file mapper2.py \
+  -file combiner2.py \
   -file reducer2.py
 
 hdfs dfs -cat ${OUTPUT_DIR}/part-* | head -n 20 > $OUTPUT_FILE
