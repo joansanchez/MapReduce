@@ -12,7 +12,7 @@ for line in sys.stdin:
     if id != prev_id and prev_id is not None:
         if complete == 2:
             year = year - year%10
-            print(str(year) + "\t" + average + "\t")
+            print(str(year) + "\t" + average)
         year = ""
         average = ""
         complete = 0
@@ -27,4 +27,4 @@ for line in sys.stdin:
 # Don't forget about the last value!
 if prev_id is not None and complete == 2:
     year = year - year%10
-    print(str(year) + "\t" + average + "\t")
+    print(str(year) + "\t" + average)
